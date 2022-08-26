@@ -11,12 +11,15 @@ class Movies extends Component {
     );
     this.setState({ movies: filteredMovies });
   };
+
   render() {
-    if (this.state.movies.length === 0)
-      return <p className="container">No Movies</p>;
     return (
       <div className="container">
-        <h3>Total movies - {this.state.movies.length}</h3>
+        {this.state.movies.length === 0 ? (
+          <h2>No Mivies to display</h2>
+        ) : (
+          <h2>Total Movies - {this.state.movies.length}</h2>
+        )}
         <table className="table">
           <thead>
             <tr>
