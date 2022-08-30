@@ -1,3 +1,4 @@
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 import React, { Component } from "react";
 
 class Counter extends Component {
@@ -18,20 +19,31 @@ class Counter extends Component {
     //To avoid extra div, we can use React.Fragment
     // Embedding expressions -> {} an expression is something which produces value, we can write JS expression inside html snippets
     return (
-      <div className="m-2">
-        <span className={this.renderBadgeColor()}>{this.formatCount()}</span>
-        <button
-          className="btn btn-secondary"
-          onClick={() => this.props.onIncrement(this.props.counter)}
-        >
-          Increment
-        </button>
-        <button
-          className="btn btn-danger m-2"
-          onClick={() => this.props.onDelete(this.props.counter.id)}
-        >
-          Delete
-        </button>
+      <div className="row">
+        <div className="col-1">
+          <span className={this.renderBadgeColor()}>{this.formatCount()}</span>
+        </div>
+        <div className="col">
+          <button
+            className="btn btn-secondary"
+            onClick={() => this.props.onIncrement(this.props.counter)}
+          >
+            +
+          </button>
+          <button
+            className="btn btn-secondary m-2"
+            onClick={() => this.props.onDecrement(this.props.counter)}
+            disabled={this.props.counter.value === 0 ? "disabled" : ""}
+          >
+            -
+          </button>
+          <button
+            className="btn btn-danger m-2"
+            onClick={() => this.props.onDelete(this.props.counter.id)}
+          >
+            x
+          </button>
+        </div>
       </div>
     );
   }
@@ -40,6 +52,8 @@ class Counter extends Component {
     const { value } = this.props.counter;
     return value === 0 ? "Zero" : value;
   }
+
+  isDisabled() {}
 
   renderBadgeColor() {
     let badge = "badge m-2 bg-";
