@@ -5,7 +5,7 @@ import Counters from "./components/counters";
 class CApp extends Component {
   state = {
     counters: [
-      { id: 1, value: 9 },
+      { id: 1, value: 0 },
       { id: 2, value: 0 },
       { id: 3, value: 0 },
       { id: 4, value: 0 },
@@ -45,7 +45,11 @@ class CApp extends Component {
   render() {
     return (
       <React.Fragment>
-        <NavBar totalValue={this.getTotalValue()} />
+        <NavBar
+          totalValue={
+            this.state.counters.filter((counter) => counter.value !== 0).length
+          }
+        />
         <Counters
           onReset={this.handleReset}
           onIncrement={this.handleIncrement}
