@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getMovies } from "../services/fakeMovieService";
+import { Link } from "react-router-dom";
 class Movies extends Component {
   state = {
     movies: getMovies(),
@@ -25,18 +26,21 @@ class Movies extends Component {
               <th scope="col">Genere</th>
               <th scope="col">Stock</th>
               <th scope="col">Rate</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
             {this.state.movies.map((movie) => (
               <tr key={movie._id}>
-                <td>{movie.title}</td>
+                <td>
+                  <Link to={`/movie/${movie._id}`}>{movie.title}</Link>
+                </td>
                 <td>{movie.genre.name}</td>
                 <td>{movie.numberInStock}</td>
                 <td>{movie.dailyRentalRate}</td>
                 <td>
                   <button
-                    className="btn btn-danger"
+                    className="btn btn-danger btn-sm"
                     onClick={() => this.handleDelete(movie)}
                   >
                     Delete
