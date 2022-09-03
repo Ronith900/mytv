@@ -16,7 +16,7 @@ const Input = ({ value, name, label, onChange, type, error }) => {
         aria-describedby="emailHelp"
       />
       {error && (
-        <div class="alert alert-danger" role="alert">
+        <div className="alert alert-danger" role="alert">
           {error}
         </div>
       )}

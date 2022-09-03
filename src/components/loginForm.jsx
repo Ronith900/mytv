@@ -1,10 +1,20 @@
 import React, { Component } from "react";
+import Joi from "joi-browser";
 import Input from "./common/input";
 
 class LoginForm extends Component {
   state = { account: { username: "", password: "" }, errors: {} };
 
+  schema = {
+    username: Joi.string().required().label("Username"),
+    password: Joi.string().required().label("Password"),
+  };
+
   validate = () => {
+    const error = Joi.validate(this.state.account, this.schema, {
+      abortEarly: false,
+    });
+    console.log(error);
     const errors = {};
     const { account } = this.state;
     if (account.username.trim() === "") errors.username = "Username is blank";
@@ -14,10 +24,20 @@ class LoginForm extends Component {
     return Object.keys(errors).length === 0 ? null : errors;
   };
 
+  joiValidate = () => {
+    const options = { abortEarly: false };
+    const result = Joi.validate(this.state.account, this.schema, options);
+    if (!result.error) return null;
+    const errors = {};
+    for (let item of result.error.details) errors[item.path[0]] = item.message;
+
+    return errors;
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const errors = this.validate();
+    const errors = this.joiValidate();
     this.setState({ errors: errors || {} });
     if (errors) return;
 
@@ -40,7 +60,7 @@ class LoginForm extends Component {
           <Input
             name="username"
             label="Username"
-            type="textfield"
+            type="text"
             value={account.username}
             onChange={this.handleChange}
             error={errors.username}
