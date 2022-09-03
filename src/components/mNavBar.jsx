@@ -32,6 +32,9 @@ class MNavBar extends Component {
               <NavLink className="nav-link" to="/rentals">
                 Rental
               </NavLink>
+              <NavLink className="nav-link" to="/login">
+                Login
+              </NavLink>
             </div>
           </div>
         </div>
