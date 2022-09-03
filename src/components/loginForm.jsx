@@ -81,7 +81,11 @@ class LoginForm extends Component {
               id="exampleCheck1"
             />
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button
+            disabled={this.joiValidate()}
+            type="submit"
+            className="btn btn-primary"
+          >
             Submit
           </button>
         </form>
