@@ -1,8 +1,16 @@
 import React, { Component } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 class MNavBar extends Component {
-  state = {};
+  state = {
+    menues: [
+      { name: "Movies", path: "/movies" },
+      { name: "Customers", path: "/customers" },
+      { name: "Rentals", path: "/rentals" },
+      { name: "Login", path: "/login" },
+      { name: "Register", path: "/register" },
+    ],
+  };
   render() {
     return (
       <nav className="navbar navbar-expand-lg bg-light">
@@ -23,21 +31,13 @@ class MNavBar extends Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-              <NavLink className="nav-link active" aria-current="page" to="/">
-                Movies
-              </NavLink>
-              <NavLink className="nav-link" to="/customers">
-                Customers
-              </NavLink>
-              <NavLink className="nav-link" to="/rentals">
-                Rental
-              </NavLink>
-              <NavLink className="nav-link" to="/login">
-                Login
-              </NavLink>
-              <NavLink className="nav-link" to="/register">
-                Register
-              </NavLink>
+              {this.state.menues.map((menu) => {
+                return (
+                  <NavLink className="nav-link" to={menu.path}>
+                    {menu.name}
+                  </NavLink>
+                );
+              })}
             </div>
           </div>
         </div>
