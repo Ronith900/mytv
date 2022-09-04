@@ -18,18 +18,14 @@ class Form extends Component {
   };
 
   validateProperty = ({ name, value }) => {
-    console.log(name, value);
-    if (name === "username") {
-      if (value.trim() === "") return "Username is required";
-    }
-    if (name === "password") {
-      if (value.trim() === "") return "Password is required";
-    }
+    const input = { [name]: value };
+    const schema = { [name]: this.schema[name] };
+    const { error } = Joi.validate(input, schema);
+    return error ? error.details[0].message : null;
   };
 
   handleChange = (e) => {
     //handling erros
-    console.log(e);
     const errors = { ...this.state.errors };
     const errorMessage = this.validateProperty(e.currentTarget);
     if (errorMessage) errors[e.currentTarget.name] = errorMessage;
@@ -51,13 +47,13 @@ class Form extends Component {
     this.callBackend();
   };
 
-  renderInput = (name, label) => {
+  renderInput = (name, label, type) => {
     const { data, errors } = { ...this.state };
     return (
       <Input
         name={name}
         label={label}
-        type="text"
+        type={type}
         value={data[name]}
         onChange={this.handleChange}
         error={errors[name]}
