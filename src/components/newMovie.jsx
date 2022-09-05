@@ -5,7 +5,7 @@ import { getGenres } from "../services/fakeGenreService";
 
 class RegisterForm extends Form {
   state = {
-    data: { title: "", genre: "", numberInStock: "", dailyRentalRate: "" },
+    data: { title: "", genre: {}, numberInStock: "", dailyRentalRate: "" },
     errors: {},
   };
 

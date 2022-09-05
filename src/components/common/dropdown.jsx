@@ -12,7 +12,11 @@ const Dropdown = ({ choices, label, name }) => {
         id={name}
       >
         {choices.map((genre) => {
-          return <option key={genre._id}>{genre.name}</option>;
+          return (
+            <option key={genre._id} value={genre}>
+              {genre.name}
+            </option>
+          );
         })}
       </select>
     </div>

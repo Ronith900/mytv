@@ -76,7 +76,14 @@ class Form extends Component {
   };
 
   renderDropdown = (choices, label, name) => {
-    return <Dropdown choices={choices} label={label} name={name} />;
+    return (
+      <Dropdown
+        choices={choices}
+        label={label}
+        name={name}
+        onChange={this.handleChange}
+      />
+    );
   };
 }
 
