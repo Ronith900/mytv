@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Input from "./input";
+import Dropdown from "./dropdown";
 import Joi from "joi-browser";
 
 class Form extends Component {
@@ -71,6 +72,10 @@ class Form extends Component {
         {label}
       </button>
     );
+  };
+
+  renderDropdown = (choices, label, name) => {
+    return <Dropdown choices={choices} label={label} name={name} />;
   };
 }
 
