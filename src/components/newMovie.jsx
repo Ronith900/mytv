@@ -1,7 +1,6 @@
 import React from "react";
 import Form from "./common/form";
 import Joi from "joi-browser";
-import Dropdown from "./common/dropdown";
 import { getGenres } from "../services/fakeGenreService";
 
 class RegisterForm extends Form {
@@ -10,7 +9,11 @@ class RegisterForm extends Form {
     errors: {},
   };
 
-  schema = {};
+  schema = {
+    title: Joi.string().required(),
+    numberInStock: Joi.string().required(),
+    dailyRentalRate: Joi.string().required(),
+  };
 
   callBackend = () => {
     console.log("Register Form Submitted");

@@ -4,11 +4,11 @@ import { NavLink } from "react-router-dom";
 class MNavBar extends Component {
   state = {
     menues: [
-      { name: "Movies", path: "/movies" },
-      { name: "Customers", path: "/customers" },
-      { name: "Rentals", path: "/rentals" },
-      { name: "Login", path: "/login" },
-      { name: "Register", path: "/register" },
+      { id: 1, name: "Movies", path: "/movies" },
+      { id: 2, name: "Customers", path: "/customers" },
+      { id: 3, name: "Rentals", path: "/rentals" },
+      { id: 4, name: "Login", path: "/login" },
+      { id: 5, name: "Register", path: "/register" },
     ],
   };
   render() {
@@ -33,7 +33,7 @@ class MNavBar extends Component {
             <div className="navbar-nav">
               {this.state.menues.map((menu) => {
                 return (
-                  <NavLink className="nav-link" to={menu.path}>
+                  <NavLink className="nav-link" to={menu.path} key={menu.id}>
                     {menu.name}
                   </NavLink>
                 );
