@@ -17,27 +17,12 @@ class RegisterForm extends Form {
   };
 
   render() {
-    const genres = getGenres();
     return (
       <div>
         <h1>Movie Form</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title", "text")}
-          <div className="mb-3">
-            <label for="genre" class="form-label">
-              Genre
-            </label>
-            <select
-              class="form-select"
-              aria-label="Default select example"
-              id="genre"
-            >
-              {genres.map((genre) => {
-                return <option value={genre._id}>{genre.name}</option>;
-              })}
-            </select>
-          </div>
-
+          {this.renderDropdown(getGenres(), "Genres", "genre")}
           {this.renderInput("numberInStock", "Number in Stock", "text")}
           {this.renderInput("dailyRentalRate", "Rate", "text")}
           {this.renderButton("Submit", "btn btn-primary")}
