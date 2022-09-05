@@ -5,14 +5,15 @@ import { getGenres } from "../services/fakeGenreService";
 
 class RegisterForm extends Form {
   state = {
-    data: { title: "", genere: "", numberInStock: 0, dailyRentalRate: 0.0 },
+    data: { title: "", genre: "", numberInStock: "", dailyRentalRate: "" },
     errors: {},
   };
 
   schema = {
-    title: Joi.string().required(),
-    numberInStock: Joi.string().required(),
-    dailyRentalRate: Joi.string().required(),
+    title: Joi.string().required().label("Title"),
+    genre: Joi.string().required(),
+    numberInStock: Joi.number().required().max(100).label("Number in Stock"),
+    dailyRentalRate: Joi.number().required().max(10).label("Rental"),
   };
 
   callBackend = () => {
@@ -25,7 +26,7 @@ class RegisterForm extends Form {
         <h1>Movie Form</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title", "text")}
-          {this.renderDropdown(getGenres(), "Genres", "genre")}
+          {this.renderDropdown(getGenres(), "Genre", "genre")}
           {this.renderInput("numberInStock", "Number in Stock", "text")}
           {this.renderInput("dailyRentalRate", "Rate", "text")}
           {this.renderButton("Submit", "btn btn-primary")}
