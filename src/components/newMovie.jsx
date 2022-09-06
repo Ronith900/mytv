@@ -5,15 +5,18 @@ import { getGenres } from "../services/fakeGenreService";
 
 class RegisterForm extends Form {
   state = {
-    data: { title: "", genre: {}, numberInStock: "", dailyRentalRate: "" },
+    data: { title: "", genre: "", numberInStock: "", dailyRentalRate: "" },
     errors: {},
   };
 
   schema = {
     title: Joi.string().required().label("Title"),
-    genre: Joi.string().required(),
-    numberInStock: Joi.number().required().max(100).label("Number in Stock"),
-    dailyRentalRate: Joi.number().required().max(10).label("Rental"),
+    numberInStock: Joi.number()
+      .required()
+      .min(0)
+      .max(100)
+      .label("Number in Stock"),
+    dailyRentalRate: Joi.number().required().min(0).max(10).label("Rental"),
   };
 
   callBackend = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Dropdown = ({ choices, label, name }) => {
+const Dropdown = ({ choices, label, name, onChange }) => {
   return (
     <div className="mb-3">
       <label htmlFor={name} className="form-label">
@@ -13,7 +13,7 @@ const Dropdown = ({ choices, label, name }) => {
       >
         {choices.map((genre) => {
           return (
-            <option key={genre._id} value={genre}>
+            <option key={genre._id} value={genre} onChange={onChange}>
               {genre.name}
             </option>
           );
