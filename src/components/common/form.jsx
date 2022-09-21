@@ -77,12 +77,15 @@ class Form extends Component {
   };
 
   renderDropdown = (choices, label, name) => {
+    const { data, errors } = { ...this.state };
     return (
       <Dropdown
         choices={choices}
         label={label}
         name={name}
+        value={data[name]}
         onChange={this.handleChange}
+        error={errors[name]}
       />
     );
   };

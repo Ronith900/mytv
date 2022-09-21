@@ -11,12 +11,13 @@ class Movies extends Component {
             <p>Total movies : {count}</p>
           </div>
           <div className="col">
-            <button
-              className="btn btn-primary btn-sm"
-              onClick={() => this.props.history.push("/movie/new")}
+            <Link
+              to="/movie/new"
+              className="btn btn-primary"
+              style={{ marginBottom: 20 }}
             >
-              Add Movie
-            </button>
+              New Movie
+            </Link>
           </div>
         </div>
         <div className="row">

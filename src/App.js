@@ -4,12 +4,11 @@ import Movies from "./components/movies";
 import MNavBar from "./components/mNavBar";
 import Customers from "./components/customers";
 import Rentals from "./components/rentals";
-import MovieForm from "./components/movieForm";
 import NotFound from "./components/notFound";
 import LoginForm from "./components/loginForm";
 import RegisterForm from "./components/registerForm";
 import { getMovies } from "./services/fakeMovieService";
-import NewMovie from "./components/newMovie";
+import MovieForm from "./components/newMovie";
 
 class App extends Component {
   state = {
@@ -29,7 +28,6 @@ class App extends Component {
         <MNavBar />
         <main className="container mt-5">
           <Switch>
-            <Route path="/movie/new" component={NewMovie} />
             <Route path="/movie/:id" component={MovieForm} />
             <Route path="/login" component={LoginForm} />
             <Route path="/customers" component={Customers} />
